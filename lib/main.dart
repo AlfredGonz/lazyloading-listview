@@ -85,5 +85,30 @@ class _HomePageState extends State<HomePage> {
       });
     }
   }
-  
+
+  Widget DisplayCardItem(ImageItem data) {
+    return Card(
+      margin: const EdgeInsets.all(8.0),
+      child: Padding(padding: const EdgeInsets.only(top: 20.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Container(
+              margin: const EdgeInsets.only(bottom: 10.0),
+              child: Text(data.content,
+                  style: TextStyle(
+                    fontSize: 20.0,
+                    fontWeight: FontWeight.bold
+                  ),
+                  textAlign: TextAlign.center,
+              )),
+
+            Container(
+              child: Stack(children: <Widget>[
+                Image.network(data.image_url)
+              ],))
+          ],
+        )),
+    );
+  }
 }
