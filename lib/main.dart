@@ -45,4 +45,24 @@ class _HomePageState extends State<HomePage> {
     return Container();
   }
 
+  Future _loadMore() async{
+    setState(() {
+      isLoading = true;
+    });
+
+    //Delay
+    await new Future.delayed(const Duration(seconds: 2)); //2 seconds to display animation
+    for (var i = currentLenght; i<= currentLenght + increment; i++) {
+      if(i%2 == 0){
+        data.add(new ImageItem('Image $i', 'https://cdn.pixabay.com/photo/2019/11/10/16/47/nature-4616282_1280.jpg'));
+      }else{
+        data.add(new ImageItem('Image $i', 'https://cdn.pixabay.com/photo/2016/08/09/21/54/yellowstone-national-park-1581879_1280.jpg'));
+      }
+
+      setState(() {
+        isLoading = false;
+        currentLenght = data.length;
+      });
+    }
+  }
 }
