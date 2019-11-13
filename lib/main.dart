@@ -28,8 +28,21 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+
+  List<ImageItem> data = [];
+  int currentLenght = 0; //init lenght
+  final int increment = 10; // limit loading
+  bool isLoading = false; //flag to check
+
+  @override
+  void initState() {
+    _loadMore();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container();
   }
+
 }
