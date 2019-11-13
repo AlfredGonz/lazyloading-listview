@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:lazy_load_scrollview/lazy_load_scrollview.dart';
+
 
 class ImageItem{
   final String content;
@@ -42,7 +44,25 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      appBar: AppBar(title: Text('Lazy Loading')),
+      body: LazyLoadScrollView(
+        isLoading: isLoading,
+        onEndOfPage: () => _loadMore(),
+        child: ListView.builder(
+            itemCount: data.length,
+            itemBuilder: (context,position){
+              if(isLoading && position == data.length -1)
+                {
+                  return Center(child: CircularProgressIndicator());
+                }
+              else
+                {
+                  return DisplayCardItem(data[position]);
+                }
+            }),
+      ),
+    );
   }
 
   Future _loadMore() async{
@@ -65,4 +85,5 @@ class _HomePageState extends State<HomePage> {
       });
     }
   }
+  
 }
